@@ -8,10 +8,8 @@
 SymbolTable::SymbolTable () = default;
 
 void SymbolTable::reset () {
-    std::cout << "made it " << std::endl;
     table.clear ();
     count.clear ();
-    std::cout << "made it " << std::endl;
 }
 
 void SymbolTable::define (const std::string& name, const std::string& type, VariableKind var_kind) {
