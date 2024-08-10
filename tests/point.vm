@@ -1,17 +1,14 @@
 function Main.main 1
     push local 0
-    pop pointer 0
     push constant 10
-    call Point.setX 1
+    call Point.setX 2
     pop temp 0
     push local 0
-    pop pointer 0
     push constant 1
-    call Point.sety 1
+    call Point.sety 2
     pop temp 0
     push local 0
-    pop pointer 0
-    call Point.draw 0
+    call Point.draw 1
     pop temp 0
     push constant 0
     return
