@@ -2,23 +2,23 @@ cmake_minimum_required(VERSION 3.8)
 project(compiler)
 
 set(HEADERS
-    JackCompiler.h
-    SymbolTable.h
-    tokenizer.h
-    hack_map.h
-    compilation_engine.h
-    vm_writer.h
-    label_generator.h)
+    include/JackCompiler.h
+    include/SymbolTable.h
+    include/tokenizer.h
+    include/hack_map.h
+    include/compilation_engine.h
+    include/vm_writer.h
+    include/label_generator.h)
 
 set(SOURCES
-    JackCompiler.cpp
-    SymbolTable.cpp
-    tokenizer.cpp
-    hack_map.cpp
-    compilation_engine.cpp
-    vm_writer.cpp
-    label_generator.cpp)
+    src/JackCompiler.cpp
+    src/SymbolTable.cpp
+    src/tokenizer.cpp
+    src/hack_map.cpp
+    src/compilation_engine.cpp
+    src/vm_writer.cpp
+    src/label_generator.cpp)
 
-add_executable(compiler main.cpp ${HEADERS} ${SOURCES})
+add_executable(compiler src/main.cpp ${HEADERS} ${SOURCES})
 
-target_include_directories(compiler PRIVATE ${CMAKE_HOME_DIRECTORY})
+target_include_directories(compiler PRIVATE ${CMAKE_HOME_DIRECTORY}/include)
