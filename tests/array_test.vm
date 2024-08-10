@@ -7,8 +7,7 @@ function Main.main 1
     call Array.new 5
     pop local 0
     push local 0
-    pop pointer 0
-    call Array.sort 0
+    call Array.sort 1
     pop temp 0
     call String.new 27
     pop temp 1
@@ -122,11 +121,9 @@ function Main.main 1
     pop temp 0
     push temp 1
     push local 0
-    pop pointer 0
-    call Array.to_s 0
+    call Array.to_s 1
     push local 0
-    pop pointer 0
-    call Array.length 0
+    call Array.length 1
     call Output.printf 3
     pop temp 0
     push constant 0
