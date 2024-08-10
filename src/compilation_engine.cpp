@@ -562,7 +562,6 @@ void CompilationEngine::_compile_call_from_outside () {
     int check = has_identifier (ident.value);
     if (check != 0) {
         _push_pop_identifier (ident.value);
-        vm_writer->write_pop (Segment::POINTER, 0);
     }
 
     Token method = advance (TokenType::IDENTIFIER);
@@ -577,10 +576,10 @@ void CompilationEngine::_compile_call_from_outside () {
         vm_writer->write_call (ident.value + "." + method.value, count);
     else if (check == 1)
         vm_writer->write_call (
-        subroutine_table->at (ident.value).type + "." + method.value, count);
+        subroutine_table->at (ident.value).type + "." + method.value, count + 1);
     else if (check == 2)
         vm_writer->write_call (
-        class_table->at (ident.value).type + "." + method.value, count);
+        class_table->at (ident.value).type + "." + method.value, count + 1);
 }
 
 bool CompilationEngine::_push_pop_identifier (const std::string& ident, bool push) {
