@@ -573,15 +573,17 @@ void CompilationEngine::_compile_call_from_outside () {
 
     advance (TokenType::SYMBOL, "\\)");
 
-    vm_writer->write_call ((check == 0 ? ident.value :
-                           check == 1 ? subroutine_table->at (ident.value).type :
-                                        class_table->at (ident.value).type) +
-    "." + method.value,
-    count);
+    if (check == 0)
+        vm_writer->write_call (ident.value + "." + method.value, count);
+    else if (check == 1)
+        vm_writer->write_call (
+        subroutine_table->at (ident.value).type + "." + method.value, count);
+    else if (check == 2)
+        vm_writer->write_call (
+        class_table->at (ident.value).type + "." + method.value, count);
 }
 
 bool CompilationEngine::_push_pop_identifier (const std::string& ident, bool push) {
-
     int check = has_identifier (ident);
     if (check == 0)
         return false;
