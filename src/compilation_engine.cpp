@@ -522,11 +522,11 @@ void CompilationEngine::_compile_array_item () {
 
     _push_pop_identifier (identifier.value);
 
-    advance (TokenType::SYMBOL, "[");
+    advance (TokenType::SYMBOL, "\\[");
 
     compile_expression ();
 
-    advance (TokenType::SYMBOL, "]");
+    advance (TokenType::SYMBOL, "\\]");
 
     // Finish code
     vm_writer->write_arithmetic (Arithmetic::ADD);
