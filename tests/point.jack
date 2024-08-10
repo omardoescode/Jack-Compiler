@@ -1,0 +1,11 @@
+class Main {
+    function int main() {
+        var Point a;
+
+        do a.setX(10);
+        do a.sety(1);
+
+        do a.draw();
+        return 0;
+    }
+}
