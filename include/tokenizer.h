@@ -20,7 +20,7 @@ private:
     void tokenize ();
     void trim_codeline (std::string&);
     void process_word (const std::string&);
-    void process_value (const std::string&, bool is_string = false);
+    void identify_type (const std::string&, bool is_string = false);
 
 private:
     std::vector<Token> tokens_vec;

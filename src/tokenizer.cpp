@@ -99,7 +99,7 @@ void Tokenizer::process_word (const std::string& word) {
     std::string token;
 
     if (word.at (0) == '"') {
-        process_value (word, true);
+        identify_type (word, true);
         return;
     }
     for (int i = 0, _end = static_cast<int> (word.length ()); i < _end; i++) {
@@ -116,10 +116,10 @@ void Tokenizer::process_word (const std::string& word) {
             // handle standalone symbols
         } else if (hack_map->contains_symbol (c)) {
             if (!token.empty ())
-                process_value (token);
+                identify_type (token);
             token = "";
             std::string value (1, c);
-            process_value (value);
+            identify_type (value);
             // otherwise, keep adding to the token
         } else {
             token += c;
@@ -127,10 +127,10 @@ void Tokenizer::process_word (const std::string& word) {
     }
 
     if (!token.empty () && !in_string)
-        process_value (token);
+        identify_type (token);
 }
 
-void Tokenizer::process_value (const std::string& value, bool is_string) {
+void Tokenizer::identify_type (const std::string& value, bool is_string) {
 
     if (is_string)
         tokens_vec.push_back ({ value, TokenType::STRING_CONST });
