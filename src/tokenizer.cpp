@@ -100,6 +100,7 @@ void Tokenizer::process_word (const std::string& word) {
 
     if (word.at (0) == '"') {
         process_value (word, true);
+        return;
     }
     for (int i = 0, _end = static_cast<int> (word.length ()); i < _end; i++) {
         const auto& c = word[i];
