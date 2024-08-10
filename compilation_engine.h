@@ -7,7 +7,6 @@
 #include "tokenizer.h"
 #include "vm_writer.h"
 
-// TODO: Refactor this mess
 class CompilationEngine {
 public:
     CompilationEngine (std::shared_ptr<HackMap>);
