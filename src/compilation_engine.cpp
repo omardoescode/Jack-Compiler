@@ -245,11 +245,11 @@ void CompilationEngine::compile_let () {
     // varName
     Token ident = advance (TokenType::IDENTIFIER);
 
-    _push_pop_identifier (ident.value);
 
     token         = tokenizer->peek_next ();
     bool to_index = token.value == "[";
     if (to_index) {
+        _push_pop_identifier (ident.value);
         advance (TokenType::SYMBOL, "\\[");
         compile_expression ();
         advance (TokenType::SYMBOL, "\\]");
