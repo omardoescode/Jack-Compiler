@@ -7,7 +7,7 @@ public:
     void compile ();
 
 private:
-    void compile_file (std::filesystem::path file);
+    void compile_file ();
     void compile_dir ();
 
 private:
