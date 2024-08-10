@@ -1,3 +1,0 @@
-[submodule "Analyzer"]
-    path = analyzer/
-    url = https://github.com/omardoescode/Hack-Syntax-Analyzer
