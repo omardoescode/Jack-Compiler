@@ -1,0 +1,234 @@
+function Maths.init 0
+    push constant 16
+    call Array.new 1
+    push constant 0
+    add
+    push constant 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    add
+    push constant 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    add
+    push constant 4
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    add
+    push constant 8
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 4
+    add
+    push constant 16
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    add
+    push constant 32
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 6
+    add
+    push constant 64
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 7
+    add
+    push constant 128
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 8
+    add
+    push constant 256
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 9
+    add
+    push constant 512
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 10
+    add
+    push constant 1024
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 11
+    add
+    push constant 2048
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 12
+    add
+    push constant 4096
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 13
+    add
+    push constant 8192
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 14
+    add
+    push constant 16384
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 15
+    add
+    push constant 32768
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+
+function Maths.bit 0
+    push argument 1
+    add
+    push argument 0
+    push argument 1
+    add
+    eq
+    and
+    return
+
+function Maths.multiply 3
+    push constant 0
+    pop local 0
+    push argument 2
+    pop local 1
+    push constant 0
+    pop local 2
+    label multiply.0
+    not
+    push local 2
+    push constant 16
+    eq
+    not
+    if-goto multiply.1
+    push argument 3
+    push local 2
+    call Maths.bit 2
+    not
+    if-goto multiply.2
+    push local 0
+    push local 1
+    add
+    pop local 0
+    goto multiply.3
+    label multiply.2
+    label multiply.3
+    push local 1
+    push constant 2
+    call Maths.multiply 2
+    pop local 1
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto multiply.0
+    label multiply.1
+    push local 0
+    return
+
+function Maths.divide 6
+    push argument 4
+    push constant 0
+    gt
+    push argument 5
+    push constant 0
+    gt
+    eq
+    pop local 5
+    push argument 5
+    push argument 4
+    gt
+    push argument 5
+    push constant 0
+    lt
+    or
+    not
+    if-goto divide.0
+    push constant 0
+    return
+
+    goto divide.1
+    label divide.0
+    label divide.1
+    push argument 4
+    push constant 2
+    push argument 5
+    call Maths.multiply 2
+    call Maths.divide 2
+    pop local 3
+    push argument 4
+    push constant 2
+    push local 3
+    push argument 5
+    call Maths.multiply 2
+    call Maths.multiply 2
+    sub
+    push argument 5
+    lt
+    not
+    if-goto divide.2
+    push constant 2
+    push local 3
+    call Maths.multiply 2
+    pop local 4
+    goto divide.3
+    label divide.2
+    push constant 2
+    push local 3
+    push constant 1
+    add
+    call Maths.multiply 2
+    pop local 4
+    label divide.3
+    push local 5
+    not
+    if-goto divide.4
+    push local 4
+    return
+
+    goto divide.5
+    label divide.4
+    label divide.5
+    neg
+    push local 4
+    return
+
