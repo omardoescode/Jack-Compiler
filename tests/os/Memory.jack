@@ -1,0 +1,16 @@
+class Memory {
+  static Array ram;
+
+  function void init() {
+    let ram = 0;
+  }
+
+  function void peek(int addr) {
+    return ram[addr];
+  }
+
+  function void poke(int addr, int value) {
+    let ram[addr] = value;
+    return;
+  }
+}

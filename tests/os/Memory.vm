@@ -1,0 +1,21 @@
+function Memory.init 0
+    push constant 0
+    pop static 0
+function Memory.peek 0
+    push static 0
+    push argument 0
+    add
+    return
+
+function Memory.poke 0
+    push static 0
+    push argument 1
+    add
+    push argument 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+

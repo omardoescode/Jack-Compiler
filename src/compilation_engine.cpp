@@ -29,7 +29,6 @@ void CompilationEngine::set_tokenizer (std::shared_ptr<Tokenizer> new_tokenizer)
 }
 
 void CompilationEngine::compile () {
-
     compile_class ();
 }
 
