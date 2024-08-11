@@ -75,4 +75,20 @@ class Maths {
     if (x > y) {return x};
     return y;
   }
+
+  funciton sqrt(int num) {
+    var int j, y, power;
+    let j = 7;
+
+    while ((j > 0) | (j = 0)) {
+      let power = (y + twoToThe[j]) * (y + twoToThe[j]);
+      if (((power < x) | (power = x)) & (power > 0)) {
+        let y = y + twoToThe[j];
+      }
+
+      let j = j - 1;
+    }
+
+    return y;
+  }
 }
