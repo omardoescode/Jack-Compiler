@@ -116,7 +116,7 @@ std::map<VariableKind, std::string> HackMap::variable_kinds = {
     { VariableKind::ARG, "" },
     { VariableKind::LOCAL, "var" },
     { VariableKind::FIELD, "field" },
-    { VariableKind::STATIC, "STATIC" },
+    { VariableKind::STATIC, "static" },
 };
 
 std::map<Segment, std::string> HackMap::segments = {
