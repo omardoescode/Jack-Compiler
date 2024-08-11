@@ -1,0 +1,67 @@
+class Maths {
+  funciton void init() {
+        let twoToThe = Array.new(16);
+        let twoToThe[0] = 1;
+        let twoToThe[1] = 2;
+        let twoToThe[2] = 4;
+        let twoToThe[3] = 8;
+        let twoToThe[4] = 16;
+        let twoToThe[5] = 32;
+        let twoToThe[6] = 64;
+        let twoToThe[7] = 128;
+        let twoToThe[8] = 256;
+        let twoToThe[9] = 512;
+        let twoToThe[10] = 1024;
+        let twoToThe[11] = 2048;
+        let twoToThe[12] = 4096;
+        let twoToThe[13] = 8192;
+        let twoToThe[14] = 16384;
+        let twoToThe[15] = 32768;
+
+        return;
+  }
+
+  function bool bit(int num, int i) {
+    return (twoToThe[i] & num = twoToThe[i])
+  }
+
+  function int multiply(int x, int y) {
+    var int sum, shiftedX, i;
+
+    let sum = 0, shiftedX = x, i = 0;
+    
+    while (~(i = 16)) {
+      if (bit(y, i)) 
+        let sum = sum + shiftedX;
+      let shiftedX = shiftedX * 2, i = i + 1;
+    }
+    
+    return sum;
+  }
+
+  function int divide(int x, int y) {
+    var int q;
+    if (y > x) return 0;
+
+    let q = divide(x, 2 * y);
+    if ((x - 2 * q * y) < y)
+      return 2 * q;
+    else
+      return 2 * q + 1;
+  }
+
+  funciton int abs(int num) {
+    if (num < 0) return -num;
+    return num;
+  }
+
+  funciton int min(int x, int y) {
+    if (x < y) return x;
+    return y;
+  }
+
+  funciton int max(int x, int y) {
+    if (x > y) return x;
+    return y;
+  }
+}

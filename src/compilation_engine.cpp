@@ -450,10 +450,11 @@ void CompilationEngine::compile_term () {
     case TokenType::KEYWORD: _handle_keyword_const (); break;
     case TokenType::SYMBOL:
         if (hack_map->contains_unary_operator (token.value.at (0))) {
+            token = tokenizer->advance ();
             _compile_unary_operator (token.value);
+            compile_expression ();
         } else if (token.value == "(") {
             advance (TokenType::SYMBOL, "\\(");
-
             compile_expression ();
             advance (TokenType::SYMBOL, "\\)");
         }
