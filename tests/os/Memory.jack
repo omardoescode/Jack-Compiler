@@ -1,7 +1,8 @@
 class Memory {
-  static Array ram;
+  static Array ram, int free;
 
   function void init() {
+    let free = 0;
     let ram = 0;
   }
 
@@ -12,5 +13,17 @@ class Memory {
   function void poke(int addr, int value) {
     let ram[addr] = value;
     return;
+  }
+
+  function int alloc(int size) {
+    var int block;
+    let block = free;
+    free = free + size;
+    return block;
+  }
+
+  function void dealloc(int object) {
+    // do nothing, lol
+    // This will work until running out of memory
   }
 }
