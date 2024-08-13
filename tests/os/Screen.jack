@@ -1,0 +1,155 @@
+class Screen {
+  static bool _color;
+  static Array screen;
+
+  function void init() {
+    let _color = true;
+    let screen = 16384;
+    return;
+  }
+  function void setColor(bool color) {
+    let _color = color;
+    return;
+  }
+
+  function void clearScreen() {
+        var int i;
+        let i = 0;
+        while(i < 8192){
+            let screen[i] = false;
+        }
+        return;
+  }
+
+  function int color_pixel(int value, int i) {
+    if (_color = 1) {
+      return (value | Maths.twoToThe[i]);
+    }
+      return (value | ~Maths.twoToThe[i]);
+  }
+
+  function void drawPixel(int x, int y) {
+    var int address, value;
+    let address = (32 * y) + (x / 16);
+    let value = Memory.peek(16384 + address);
+    let value = color_pixel(value, x % 16);
+    do Memory.poke(address, value);
+    return;
+  }
+
+  function void drawHorizontalLine(int y, int x1, int x2) {
+    var int temp;
+    if (x1 > x2) {
+      let temp = x1;
+      let x1 = x2;
+      let x2 = temp;
+    }
+
+    while (~(x1 = x2 + 1)) {
+      drawPixel(x1, y);
+      let x1 = x1 + 1;
+    }
+    return;
+  }
+  function void drawVerticalLine(int x, int y1, int y2) {
+    var int temp;
+    if (y1 > y2) {
+      let temp = y1;
+      let y1 = y2;
+      let y2 = temp;
+    }
+
+    while (~(y1 = y2 + 1)) {
+      drawPixel(x, y1);
+      let y1 = y1 + 1;
+    }
+    return;
+  }
+  function void drawLine(int x1, int y1, int x2, int y2) {
+    var int a, b, dx, dy, diff;
+
+    if (x1 = x2) {
+      do drawVerticalLine(x1, y1, y2);
+      return;
+    }
+
+    if (y1 = y2) {
+      do drawHorizontalLine(y1, x1, x2);
+      return;
+    }
+
+    let a = 0;
+    let b = 0;
+    let dx = x2 - x1;
+    let dy = y2 - y1;
+
+    let diff = 0;
+
+    if ((dx > 0) & (dy > 0)) {
+      while (~(a > dx) & ~(b > dy)) {
+        drawPixel(x1 + a, y1 + b);
+
+        if (diff < 0) { let a = a + 1; let diff = diff + dy; }
+        else { let b = b + 1; let diff = diff - dx; }
+      } 
+      return;
+    } 
+    if ((dx > 0) & (dy < 0)) {
+      while (~(a > dx) & ~(b > dy)) {
+        drawPixel(x1 + a, y1 + b);
+
+        if (diff < 0) { let a = a + 1; let diff = diff + dy; }
+        else { let b = b - 1; let diff = diff + dx; }
+      } 
+      return;
+    }
+
+    drawLine(x2, y2, x1, y1);
+    return;
+
+  }
+
+  function void drawCircle(int x, int y, int r) {
+    var int dy, sq, r_squared; 
+    let dy = -r;
+
+    while (dy < r + 1) {
+      let sq = Maths.sqrt(r_squared - dy * dy);
+      drawHorizontalLine(y + dy, x - sq, x + sq);
+      let dy = dy + 1;
+    }
+
+  }
+  
+  function void drawOutlineCircle(int x, int y, int r) {
+    var int dy, x1, x2, sq; 
+    let dy = -r;
+
+    while (dy < r + 1) {
+      let sq = Maths.sqrt(r * r - dy * dy);
+      let x1 = x - sq;
+      let x2 = x + sq;
+      drawPixel(x1, y + dy);
+      drawPixel(x2, y + dy);
+
+      let dy = dy + 1;
+    }
+
+  }
+
+  function void drawRectangle(int x1, int y1, int x2, int y2) {
+   var int temp;
+
+   if (y1 > y2) {
+    let temp = y1;
+    let y1 = y2;
+    let y2 = temp;
+   }
+
+   while (~(y1 > y2)) {
+    drawHorizontalLine(y1, x1, x2);
+    y1 = y1 + 1;
+   }
+  }
+  
+}
